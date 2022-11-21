@@ -16,9 +16,8 @@ export const App = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [largeImageSrc, setLargeImageSrc] = useState('');
-  const [imageAlt, setImageAlt] = useState('');
-
+  const [largeImage, setLargeImage] = useState('');
+  
   useEffect(() => {
     if (query === '') {
       return;
@@ -52,16 +51,15 @@ export const App = () => {
     if (event.target.nodeName !== "IMG") {
       return;
     };
-   
+
     setShowModal(true);
-    setLargeImageSrc(event.target.dataset.largeImgSrc);
-    setImageAlt(event.target.alt);
+    setLargeImage(event.target);
   };
 
   const closeModal = () => {
     setShowModal(false);
   };
- 
+
   return (
     <div className={styles.app} >
       <Searchbar onSubmit={handleSubmitForm} />
@@ -80,10 +78,10 @@ export const App = () => {
       
       {showModal && (
         <Modal onClose={closeModal}>
-          <img src={largeImageSrc} alt={imageAlt} />
+          <img src={largeImage.dataset.largeImgSrc} alt={largeImage.alt} />
         </Modal>
       )}
-     
+      
     </div>
   );
 };
