@@ -35,7 +35,7 @@ export const App = () => {
       })
       .finally(() => setLoading(false));
      
-  }, [query, page, setLoading, setTotalImages, setGallery]);
+  }, [query, page]);
   
   const handleSubmitForm = (query) => {
     setQuery(query);
